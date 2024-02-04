@@ -2,14 +2,14 @@
   <head>
   </head>
   <body>
-      <object id="student"    height="700"></object>
-      <object id="trainer" height="700"></object>
-      <object id="admin"   height="700"></object>
+      <object id="student" data="<%= commonData.appName %>/student" height="700"></object>
+      <object id="trainer" data="<%= commonData.appName %>/trainer" height="700"></object>
+      <object id="trainer" data="<%= commonData.appName %>/admin" height="700"></object>
   </body>
-  <script>
+<!--   <script>
         const serverURL = '<%= commonData.appName %>';
         document.getElementById("student").data=serverURL+"/student";
         document.getElementById("trainer").data=serverURL+"/trainer";
         document.getElementById("admin").data=serverURL+"/admin";
-  </script>
+  </script> -->
 </html>
