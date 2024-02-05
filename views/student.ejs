@@ -17,6 +17,12 @@
         .emoji {
             margin-right: 5px;
         }
+      #emojis{
+        width:13em;
+        box-shadow:3px 3px 3px gray;
+        border-radius:5px;
+        padding:5px;
+      }
     </style>
 </head>
 
@@ -32,6 +38,7 @@
       
         const txtName = document.getElementById("name");
         const txtMessage = document.getElementById("message");
+      
         const socket = io(serverURL);
         socket.on("connection");
 
@@ -62,12 +69,11 @@
             txtMessage.focus();
         }
         function getEmojis() {
-            let emojis = ["👍", "👎", "😊", "🍕", "🍵", "📑", "✔️", "❌", "🍔", "😕", "🎉", "❤️", "🅰", "🅱", "🆗", "1️⃣","2️⃣","3️⃣","4️⃣","5️⃣"];
+            let emojis = ["🖐🏼","👍", "👎", "😊", "🍕", "🍵", "✔️", "❌", "🍔", "😕", "🎉", "❤️", "🅰", "🅱", "🆗", "1️⃣","2️⃣","3️⃣","4️⃣","5️⃣"];
 
             var res = "";
             emojis.forEach((e, i) => {
                 res += `<span class='emoji' onClick="emojiClick(this)">${e}</span>`;
-                if (i == 5 || i == 11) res += "<br />";
             });
             return res;
         }
