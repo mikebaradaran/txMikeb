@@ -27,8 +27,6 @@
     <script>
         const serverURL = '<%= commonData.appName %>';
       
-        const divMessages = document.getElementById("messages");
-
         function displayData(data) {
             let messages = '<table class="table table-bordered table-striped">';
 
@@ -36,14 +34,14 @@
                 messages += `<tr><td>${d.name}</td><td>${d.body}</td></tr>`;
             });
 
-            divMessages.innerHTML = messages + "</table>";
+            document.getElementById("messages").innerHTML = messages + "</table>";
         }
         //-------------------------------------------------------------
         const socket = io(serverURL);
         socket.on("connection");
         let msg = {
                 name: "trainer",
-                body: "x",
+                body: "refresh",
             };
             socket.emit("message", msg);
       
