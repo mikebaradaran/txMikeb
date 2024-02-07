@@ -21,6 +21,9 @@ app.use((req, res, next) => {
 app.get("/all", (req, res) => {
   res.render("all");
 });
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/index", (req, res) => {
   res.render("index");
 });
