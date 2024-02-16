@@ -23,27 +23,39 @@
 
 <body>
     <div id="messages"></div>
-
+    <button id="clearButton" onclick="sendCommand('clear')">
+      clear
+    </button>
     <script>
         const serverURL = '<%= commonData.appName %>';
-      
+        const divMessages = document.getElementById("messages");
+
         function displayData(data) {
+            var found = false;
+          
             let messages = '<table class="table table-bordered table-striped">';
 
             data.forEach((d) => {
                 messages += `<tr><td>${d.name}</td><td>${d.body}</td></tr>`;
+                found = true;
             });
 
-            document.getElementById("messages").innerHTML = messages + "</table>";
+            divMessages.innerHTML = messages + "</table>";
+            document.getElementById("clearButton").style.display = (found)?"block":"none";  
+          
+        }
+        
+        function sendCommand(command) {
+            let msg = {
+                name: "trainer",
+                body: command
+            };
+            socket.emit("message", msg);
         }
         //-------------------------------------------------------------
         const socket = io(serverURL);
         socket.on("connection");
-        let msg = {
-                name: "trainer",
-                body: "refresh",
-            };
-            socket.emit("message", msg);
+        sendCommand("refresh");
       
         socket.on("message", (data) => {
             displayData(data);

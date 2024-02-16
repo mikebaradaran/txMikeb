@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    paste here:<textarea id="pcs"></textarea>
+    <button onclick="getPCs()">OK</button>
+    Result:<textarea id="result" rows="16"></textarea>
+    <script>
+        function getPCs() {
+            let pcs = document.getElementById('pcs').value.split('\n');
+            let result = "";
+            pcs.forEach(pc => {
+                if (pc.includes('Lab URL:'))
+                    result += pc.replace('Lab URL:', '').
+                        replace(',', '').trim() + "\n";
+            });
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>

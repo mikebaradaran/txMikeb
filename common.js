@@ -1,11 +1,8 @@
 // common.js
-const projectName = "https://txmikeb.glitch.me"
-
 const commonData = {
-  appName: projectName,
+  appName: `https://txmike2.glitch.me`,
   author: "Mike Baradaran"
-};
-
-module.exports = commonData;
+}
+ module.exports = commonData;
 
 
