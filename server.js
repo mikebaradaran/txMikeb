@@ -1,7 +1,4 @@
 // server.js
-var customers = require("./customers.json");
-var orders = require("./orders.json")
-const commentJS = require('./comments.js');
 const commonData = require("./common.js");
 
 const fs = require("fs");
@@ -31,13 +28,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/index", (req, res) => {
-  res.render("index");
-});
-
-app.get("/getpcs", (req, res) => {
-  res.render("getpcs");
-});
 app.get("/all", (req, res) => {
   res.render("all");
 });
@@ -55,51 +45,6 @@ app.get("/clear", (req, res) => {
   doTrainerCommand({name:"trainer",body:"clear"});
   // res.end();
   res.render("index");
-});
-app.get("/comments", (req, res) => {
-  res.render("comments");
-  
-});
-
-app.get("/commentsRead", (req, res) => {
-  res.send(fs.readFileSync('comments.txt', 'utf8'));
-});
-
-app.get("/commentsDelete", (req, res) => {
-  commentJS.deleteComments(fs);
-  res.send("File deleted");
-});
-
-// Handle form submission for comments
-app.post("/commentsSave", (req, res) => {
-  commentJS.saveComments(req, fs);  
-  res.send("Thank you 👍 Your comments are save.");
-});
-
-
-
-app.get("/customers", function (req, res) {
-  res.send(customers);
-});
-
-app.get("/customers/:id", function (req, res) {
-  let id = req.params.id;
-  var data = customers.filter(
-    (c) => c.CustomerID.toLowerCase() == id.toLowerCase()
-  );
-  res.send(data);
-});
-
-app.get("/orders", function (req, res) {
-  res.send(orders);
-});
-
-app.get("/orders/:id", function (req, res) {
-  let id = req.params.id;
-  var data = orders.filter(
-    (c) => c.CustomerID.toLowerCase() == id.toLowerCase()
-  );
-  res.send(data);
 });
 
 server.listen(
