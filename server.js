@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
 // Define routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("all");
 });
 
 app.get("/all", (req, res) => {
