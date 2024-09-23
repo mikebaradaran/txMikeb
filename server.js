@@ -37,11 +37,11 @@ app.use((req, res, next) => {
 
 // Define routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("student");
 });
 
 app.get("/index", (req, res) => {
-  res.render("index");
+  res.render("student");
 });
 
 app.get("/all", (req, res) => {
