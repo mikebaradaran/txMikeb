@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <style>
+      table{
+        width:100%;
+      }
+        td:first-child {
+            padding-right: 20px;
+            font-weight: bold;
+            width: 12em;
+        }
+      table td:nth-child(2){
+        width:500px;
+      }
+    </style>
+</head>
+
+<body>
+    <div id="messages"></div>
+    <button id="clearButton" onclick="sendCommand('clear')">
+      clear
+    </button>
+    <script>
+        const serverURL = '<%= commonData.appName %>';
+        const divMessages = document.getElementById("messages");
+
+        function displayData(data) {
+            var found = false;
+          
+            let messages = '<table class="table table-bordered table-striped">';
+
+            data.forEach((d) => {
+                messages += `<tr><td>${d.name}</td><td>${d.body}</td></tr>`;
+                found = true;
+            });
+
+            divMessages.innerHTML = messages + "</table>";
+            document.getElementById("clearButton").style.display = (found)?"block":"none";  
+          
+        }
+        
+        function sendCommand(command) {
+            let msg = {
+                name: "trainer",
+                body: command
+            };
+            socket.emit("message", msg);
+        }
+        //-------------------------------------------------------------
+        const socket = io(serverURL);
+        socket.on("connection");
+        sendCommand("refresh");
+      
+        socket.on("message", (data) => {
+            displayData(data);
+        });
+    </script>
+</body>
+</html>
